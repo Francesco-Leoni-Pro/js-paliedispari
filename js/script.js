@@ -23,3 +23,43 @@ function isPalindroma(parola) {
   }
   return true; // Se tutte coincidono, è palindroma
 }
+
+// ----- PARI O DISPARI -----
+
+// 1. L'utente sceglie pari o dispari
+let sceltaUtente = prompt("Scegli: pari o dispari").toLowerCase();
+
+// Controllo base per sicurezza
+while (sceltaUtente !== "pari" && sceltaUtente !== "dispari") {
+  sceltaUtente = prompt("Scelta non valida! Scrivi 'pari' o 'dispari':").toLowerCase();
+}
+
+// 2. L'utente inserisce un numero da 1 a 5
+let numeroUtente = parseInt(prompt("Inserisci un numero da 1 a 5:"));
+
+while (isNaN(numeroUtente) || numeroUtente < 1 || numeroUtente > 5) {
+  numeroUtente = parseInt(prompt("Numero non valido! Inserisci un numero da 1 a 5:"));
+}
+
+// Funzione che genera un numero random tra 1 e 5
+function generaNumeroRandom() {
+  return Math.floor(Math.random() * 5) + 1;
+}
+
+const numeroComputer = generaNumeroRandom();
+console.log("Numero del computer:", numeroComputer);
+
+const somma = numeroUtente + numeroComputer;
+console.log("Somma:", somma);
+
+function isPari(numero) {
+  return numero % 2 === 0;
+}
+
+const sommaPari = isPari(somma);
+
+if ((sommaPari && sceltaUtente === "pari") || (!sommaPari && sceltaUtente === "dispari")) {
+  console.log("Hai vinto!");
+} else {
+  console.log("Il computer ha vinto!");
+}
